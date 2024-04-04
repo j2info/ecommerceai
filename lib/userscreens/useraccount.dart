@@ -18,7 +18,7 @@ class AccountPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.only(top:30.0),
+        padding: const EdgeInsets.only(top: 30.0),
         child: SafeArea(
           child: Column(
             children: [
@@ -125,7 +125,7 @@ class AccountPage extends StatelessWidget {
                       _buildListItem(
                         icon: Icons.logout,
                         title: 'Logout',
-                        subheading: 'Logoutout from your account',
+                        subheading: 'Logout from your account',
                       ),
                     ],
                   ),
@@ -134,6 +134,20 @@ class AccountPage extends StatelessWidget {
             ],
           ),
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.grey[200], // Example color
+        selectedItemColor: Colors.red, // Example color
+        unselectedItemColor: Colors.grey, // Example color
+        type: BottomNavigationBarType.fixed,
+        currentIndex: 4, // Index of the "Account" icon
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+          BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: "Cart"),
+          BottomNavigationBarItem(icon: Icon(Icons.search), label: "Search"),
+          BottomNavigationBarItem(icon: Icon(Icons.category), label: "Category"),
+          BottomNavigationBarItem(icon: Icon(Icons.person_pin), label: "Account"),
+        ],
       ),
     );
   }

@@ -94,11 +94,11 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
     return Container(
       width: 400,
       height: 80,
-      margin: EdgeInsets.symmetric(vertical: 25),
+      margin: EdgeInsets.symmetric(vertical: 25,horizontal: 10),
       padding: EdgeInsets.all(7),// Add spacing between containers
       decoration: BoxDecoration(
         color: Colors.grey[200],
-        border: Border.all(color: Colors.grey, width: 2), // Change border color to red
+        border: Border.all(color: Colors.grey, width: 1), // Change border color to red
       ),
       child: Row(
         children: [
