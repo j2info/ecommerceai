@@ -1,7 +1,10 @@
-import 'package:ecommerceai/view/home_screen/home_screen.dart';
+import 'package:ecommerceai/view/bottom_nav/bottom_nav.dart';
+
 import 'package:flutter/material.dart';
 
-void main() {}
+void main() {
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -10,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      home: BottomNavigationScreen(),
     );
   }
 }
