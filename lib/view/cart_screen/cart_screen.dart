@@ -52,6 +52,7 @@ class _CartScreenState extends State<CartScreen> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Material(
+                //for setting the shadow as elevation
                 elevation: 8,
                 child: Container(
                   decoration:
@@ -60,7 +61,7 @@ class _CartScreenState extends State<CartScreen> {
                       color: ColorConstant.Black,
                     )
                   ]),
-                  height: 200,
+                  height: 180,
                   width: 400,
                   child: Row(
                     children: [
@@ -89,8 +90,7 @@ class _CartScreenState extends State<CartScreen> {
                                 height: 15,
                               ),
                               Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   RatingBar.builder(
                                     unratedColor: Colors.grey,
@@ -98,17 +98,23 @@ class _CartScreenState extends State<CartScreen> {
                                     minRating: 1,
                                     direction: Axis.horizontal,
                                     itemCount: 5,
-                                    itemSize: 23,
-                                    // itemPadding: EdgeInsets.symmetric(
-                                    //   horizontal: 1,
-                                    // ),
+                                    itemSize: 20,
                                     itemBuilder: (context, index) => Icon(
                                       Icons.star,
                                       color: ColorConstant.DefRed,
                                     ),
                                     onRatingUpdate: (index) {},
                                   ),
-                                  Text("\$ 1,099")
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Text(
+                                    "\$ 1,099",
+                                    style: GoogleFonts.poppins(
+                                        textStyle: TextStyle(
+                                            fontSize: 17,
+                                            fontWeight: FontWeight.w600)),
+                                  )
                                 ],
                               ),
                               SizedBox(
@@ -132,6 +138,7 @@ class _CartScreenState extends State<CartScreen> {
                                               fontWeight: FontWeight.bold)),
                                     ),
                                     DropdownButton(
+                                      underline: Container(),
                                       value: dropDownValue,
                                       items:
                                           Numbers.map<DropdownMenuItem<String>>(
@@ -160,7 +167,7 @@ class _CartScreenState extends State<CartScreen> {
               ),
             ),
             SizedBox(
-              height: 40,
+              height: 30,
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),

@@ -32,9 +32,9 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
             selectedIndex = index;
             setState(() {});
           },
-          backgroundColor: ColorConstant.white,
+          backgroundColor: ColorConstant.BottomnavColor,
           selectedItemColor: ColorConstant.DefRed,
-          unselectedItemColor: Colors.grey,
+          unselectedItemColor: ColorConstant.grey,
           type: BottomNavigationBarType.fixed,
           items: [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
