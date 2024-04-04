@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ecommerceai/userscreens/useraccount.dart';
 
 void main() {
   runApp(MyApp());
@@ -112,7 +113,7 @@ class OTPScreen extends StatelessWidget {
                         onPressed: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => OTPScreen()),
+                            MaterialPageRoute(builder: (context) => AccountPage()),
                           );// Add functionality for continue button
                         },
                         style: ElevatedButton.styleFrom(

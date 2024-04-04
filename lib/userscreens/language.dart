@@ -93,9 +93,9 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
   Widget languageContainer(String language, String languageInNative, Color radioColor) {
     return Container(
       width: 400,
-      height: 70,
-      margin: EdgeInsets.symmetric(vertical: 35),
-      padding: EdgeInsets.all(10),// Add spacing between containers
+      height: 80,
+      margin: EdgeInsets.symmetric(vertical: 25),
+      padding: EdgeInsets.all(7),// Add spacing between containers
       decoration: BoxDecoration(
         color: Colors.grey[200],
         border: Border.all(color: Colors.grey, width: 2), // Change border color to red
