@@ -1,3 +1,4 @@
+import 'package:ecommerceai/userscreens/addresslist.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -43,7 +44,10 @@ class AccountPage extends StatelessWidget {
                     IconButton(
                       icon: Icon(Icons.chat),
                       onPressed: () {
-                        // Add onPressed functionality for chat icon
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => AddressList()),
+                        );// Add onPressed functionality for chat icon
                       },
                     ),
                   ],
