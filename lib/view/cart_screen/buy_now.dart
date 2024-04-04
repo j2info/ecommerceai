@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ProductSubCategory extends StatelessWidget {
-  const ProductSubCategory({super.key});
+class BuyNowScreen extends StatelessWidget {
+  const BuyNowScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:ecommerceai/utils/color_constant/color_constant.dart';
 import 'package:ecommerceai/view/home_screen/home_screen_widget.dart';
-import 'package:ecommerceai/view/product_details_screen/product_bottom_nav.dart';
+import 'package:ecommerceai/view/product_sub_category/product_bottom_nav.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 

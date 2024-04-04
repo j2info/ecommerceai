@@ -1,8 +1,9 @@
 import 'package:ecommerceai/utils/color_constant/color_constant.dart';
-import 'package:ecommerceai/view/product_details_screen/ear_buds.dart';
-import 'package:ecommerceai/view/product_details_screen/power_bank.dart';
-import 'package:ecommerceai/view/product_details_screen/tablet.dart';
-import 'package:ecommerceai/view/product_details_screen/watches.dart';
+import 'package:ecommerceai/view/product_sub_category/ear_buds.dart';
+import 'package:ecommerceai/view/product_sub_category/power_bank.dart';
+
+import 'package:ecommerceai/view/product_sub_category/tablet.dart';
+import 'package:ecommerceai/view/product_sub_category/watches.dart';
 import 'package:flutter/material.dart';
 
 class ProductBottomnavigationBar extends StatefulWidget {
