@@ -1,4 +1,6 @@
 import 'package:ecommerceai/utils/color_constant/color_constant.dart';
+import 'package:ecommerceai/utils/font_constant/font_constant.dart';
+import 'package:ecommerceai/view/cart_screen/payment_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -463,7 +465,97 @@ class _BuyNowScreenState extends State<BuyNowScreen> {
             title: Text(""),
             content: Column(
               children: [
-                Container(),
+                Material(
+                  elevation: 6,
+                  child: Container(
+                    height: 80,
+                    width: double.infinity,
+                    child: Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              Text("Total Amount", style: FontConstant.defFont),
+                              Icon(
+                                Icons.keyboard_arrow_down,
+                                color: ColorConstant.DefRed,
+                                size: 30,
+                              )
+                            ],
+                          ),
+                          Text(
+                            "\$1,099",
+                            style: FontConstant.defFont,
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 50,
+                ),
+                Container(
+                  height: 440,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 234, 229, 229),
+                      border: Border.all(
+                        color: ColorConstant.lightGrey,
+                      )),
+                  child: Column(
+                    children: [
+                      PaymentWidget(
+                        icon: Icon(
+                          Icons.phone_iphone_sharp,
+                          size: 50,
+                          color: ColorConstant.Black,
+                        ),
+                        title: "UPI",
+                        subtitle: "Pay by any UPI app",
+                      ),
+                      Divider(),
+                      PaymentWidget(
+                        icon: Icon(
+                          Icons.security_outlined,
+                          size: 50,
+                          color: ColorConstant.Black,
+                        ),
+                        title: "Credit/Debit/ATM Card",
+                        subtitle: "10% Cashback on HDFC bank card",
+                      ),
+                      Divider(),
+                      PaymentWidget(
+                        icon: Icon(
+                          Icons.other_houses_outlined,
+                          size: 50,
+                          color: ColorConstant.Black,
+                        ),
+                        title: "Net Banking",
+                      ),
+                      Divider(),
+                      PaymentWidget(
+                        icon: Icon(
+                          Icons.money,
+                          size: 50,
+                          color: ColorConstant.Black,
+                        ),
+                        title: "Cash On Delivery",
+                      ),
+                      Divider(),
+                      PaymentWidget(
+                        icon: Icon(
+                          Icons.wallet_rounded,
+                          size: 50,
+                          color: ColorConstant.Black,
+                        ),
+                        title: "Wallet",
+                      ),
+                    ],
+                  ),
+                )
               ],
             ),
             label: Text("Payment")),
