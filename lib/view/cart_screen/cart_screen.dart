@@ -91,7 +91,7 @@ class _CartScreenState extends State<CartScreen> {
                                 height: 15,
                               ),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
+                                //mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   RatingBar.builder(
                                     unratedColor: Colors.grey,
@@ -107,7 +107,7 @@ class _CartScreenState extends State<CartScreen> {
                                     onRatingUpdate: (index) {},
                                   ),
                                   SizedBox(
-                                    width: 10,
+                                    width: 5,
                                   ),
                                   Text(
                                     "\$ 1,099",

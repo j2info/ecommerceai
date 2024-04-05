@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:ecommerceai/utils/color_constant/color_constant.dart';
+import 'package:ecommerceai/view/cart_screen/buy_now.dart';
 import 'package:ecommerceai/view/cart_screen/cart_screen.dart';
 
 import 'package:flutter/material.dart';
@@ -190,7 +191,13 @@ class _WatchDetailsScreenState extends State<WatchDetailsScreen> {
                       ),
                     ),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => BuyNowScreen(),
+                            ));
+                      },
                       child: Container(
                         height: 60,
                         width: 160,

@@ -2,7 +2,7 @@ import 'package:ecommerceai/utils/color_constant/color_constant.dart';
 import 'package:ecommerceai/utils/font_constant/font_constant.dart';
 import 'package:ecommerceai/view/cart_screen/payment_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 

@@ -1,4 +1,5 @@
 import 'package:ecommerceai/utils/color_constant/color_constant.dart';
+import 'package:ecommerceai/view/product_details_screen/watch_details.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -29,7 +30,13 @@ class TabletScreen extends StatelessWidget {
         itemBuilder: (context, index) => Padding(
           padding: const EdgeInsets.all(8.0),
           child: InkWell(
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => WatchDetailsScreen(),
+                  ));
+            },
             child: Container(
               decoration: BoxDecoration(color: ColorConstant.white, boxShadow: [
                 BoxShadow(

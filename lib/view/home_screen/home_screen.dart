@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:ecommerceai/utils/color_constant/color_constant.dart';
 import 'package:ecommerceai/view/home_screen/home_screen_widget.dart';
+import 'package:ecommerceai/view/product_details_screen/watch_details.dart';
 import 'package:ecommerceai/view/product_sub_category/product_bottom_nav.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -13,11 +14,42 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  TextEditingController searchController = TextEditingController();
   List<Color> MyColors = [
     Color.fromARGB(255, 33, 156, 243),
     Color.fromARGB(255, 46, 245, 53),
     Color.fromARGB(255, 160, 48, 252)
   ];
+  List<String> data = [
+    "Product 1",
+    "Product 2",
+    "Product 3",
+    "Product 4",
+    // Add more products as needed
+  ];
+  List<String> filteredData = [];
+
+  @override
+  void initState() {
+    filteredData = data; // Initialize filteredData with all data initially
+    super.initState();
+  }
+
+  void filterData(String query) {
+    setState(() {
+      if (query.isNotEmpty) {
+        // Filter the data based on the search query
+        filteredData = data
+            .where((product) =>
+                product.toLowerCase().contains(query.toLowerCase()))
+            .toList();
+      } else {
+        // If the query is empty, show all data
+        filteredData = data;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,10 +94,20 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 70,
                 width: 360,
                 child: TextField(
+                  controller: searchController,
                   decoration: InputDecoration(
-                      prefixIcon: Icon(
-                        Icons.search,
-                      ),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15),
+                          borderSide: BorderSide(color: ColorConstant.DefRed)),
+                      suffixIcon: InkWell(
+                          onTap: () {},
+                          child: Icon(
+                            Icons.search,
+                            size: 30,
+                          )),
+                      // prefixIcon: Icon(
+                      //   Icons.search,
+                      // ),
                       hintText: "Search for Products, Brands",
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20))),
