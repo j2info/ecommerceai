@@ -1,4 +1,5 @@
 import 'package:ecommerceai/utils/color_constant/color_constant.dart';
+import 'package:ecommerceai/view/cart_screen/buy_now.dart';
 
 import 'package:flutter/material.dart';
 
@@ -313,7 +314,13 @@ class _CartScreenState extends State<CartScreen> {
                           ),
                         ),
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => BuyNowScreen(),
+                                ));
+                          },
                           child: Container(
                             height: 40,
                             width: 130,
