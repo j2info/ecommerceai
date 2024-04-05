@@ -366,6 +366,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
                         Text(
                           'House No',
                           style: TextStyle(
+
                             color: Colors.red,
                           ),
                         ),
@@ -373,7 +374,9 @@ class _AddAddressPageState extends State<AddAddressPage> {
                           padding: EdgeInsets.symmetric(vertical: 5.0),
                           child: TextFormField(
                             controller: houseNumberController,
+                            keyboardType: TextInputType.number,
                             decoration: InputDecoration(
+
                               hintText: 'Enter your House Number',
                               border: OutlineInputBorder(),
                             ),
