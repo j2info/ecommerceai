@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AddressList extends StatefulWidget {
   @override
@@ -7,12 +8,30 @@ class AddressList extends StatefulWidget {
 
 class _AddressListState extends State<AddressList> {
   List<String> addresses = [];
+  int _selectedIndex = -1;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadAddresses();
+  }
+
+  void _loadAddresses() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      addresses = prefs.getStringList('addresses') ?? [];
+    });
+  }
+
+  void _saveAddresses() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setStringList('addresses', addresses);
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // backgroundColor: Colors.blueGrey,
         title: Padding(
           padding: const EdgeInsets.only(top: 30.0),
           child: Text(
@@ -51,6 +70,7 @@ class _AddressListState extends State<AddressList> {
                   if (value != null) {
                     setState(() {
                       addresses.add(value);
+                      _saveAddresses();
                     });
                   }
                 });
@@ -62,9 +82,111 @@ class _AddressListState extends State<AddressList> {
       body: ListView.builder(
         itemCount: addresses.length,
         itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(addresses[index]),
+          // Split the address into components
+          List<String> addressComponents = addresses[index].split(', ');
+
+          // Extract name and phone number
+          String name = addressComponents[0];
+          String phoneNumber = addressComponents[1];
+
+          // Join other details into a paragraph-like format separated by commas
+          String otherDetails = addressComponents.sublist(2, addressComponents.length - 1).join(', ');
+
+          // Extract the work type
+          String workType = addressComponents.last;
+
+          return Card(
+            elevation: 4,
+            margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+              side: BorderSide(color: Colors.grey.shade300, width: 1),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Stack(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Radio(
+                        value: index,
+                        groupValue: _selectedIndex,
+                        onChanged: (int? value) {
+                          setState(() {
+                            _selectedIndex = value!;
+                          });
+                        },
+                      ),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Name: $name',
+                              style: TextStyle(fontSize: 16.0),
+                            ),
+                            Text(
+                              'Phone: $phoneNumber',
+                              style: TextStyle(fontSize: 16.0),
+                            ),
+                            SizedBox(height: 8),
+                            SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Row(
+                                children: [
+                                  Text(
+                                    otherDetails,
+                                    style: TextStyle(fontSize: 16.0),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      IconButton(
+                        icon: Icon(Icons.arrow_forward),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => AddAddressPage(
+                                address: addresses[index],
+                              ),
+                            ),
+                          ).then((updatedAddress) {
+                            if (updatedAddress != null) {
+                              setState(() {
+                                addresses[index] = updatedAddress;
+                              });
+                            }
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                  Positioned(
+                    bottom: 0,
+                    right: 0,
+                    child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                      decoration: BoxDecoration(
+                        color: Colors.blue[200],
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Text(
+                        workType,
+                        style: TextStyle(fontSize: 12.0, color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           );
+
         },
       ),
     );
@@ -72,11 +194,13 @@ class _AddressListState extends State<AddressList> {
 }
 
 class AddAddressPage extends StatefulWidget {
+  final String? address;
+
+  AddAddressPage({this.address});
+
   @override
   _AddAddressPageState createState() => _AddAddressPageState();
 }
-
-
 
 class _AddAddressPageState extends State<AddAddressPage> {
   TextEditingController fullNameController = TextEditingController();
@@ -88,9 +212,28 @@ class _AddAddressPageState extends State<AddAddressPage> {
   TextEditingController pincodeController = TextEditingController();
   TextEditingController addressController = TextEditingController();
 
-  String? addressType = 'Home'; // Added for selecting address type
+  String? addressType = 'Home';
 
   bool isAltPhoneVisible = false;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.address != null) {
+      List<String> addressComponents = widget.address!.split(', ');
+      fullNameController.text = addressComponents[0];
+      phoneController.text = addressComponents[1];
+      stateController.text = addressComponents[2];
+      districtController.text = addressComponents[3];
+      houseNumberController.text = addressComponents[4];
+      pincodeController.text = addressComponents[5];
+      addressController.text = addressComponents[6];
+      if (addressComponents.length > 7) {
+        altPhoneController.text = addressComponents[7];
+      }
+      addressType = addressComponents.last;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -108,7 +251,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
               Text(
                 'Full Name',
                 style: TextStyle(
-                  color: Colors.red, // Required asterisk color
+                  color: Colors.red,
                 ),
               ),
               TextField(
@@ -121,7 +264,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
               Text(
                 'Phone Number',
                 style: TextStyle(
-                  color: Colors.red, // Required asterisk color
+                  color: Colors.red,
                 ),
               ),
               TextField(
@@ -150,7 +293,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
                 Text(
                   'Alternative Phone Number',
                   style: TextStyle(
-                    color: Colors.red, // Required asterisk color
+                    color: Colors.red,
                   ),
                 ),
                 TextField(
@@ -171,24 +314,21 @@ class _AddAddressPageState extends State<AddAddressPage> {
                         Text(
                           'State',
                           style: TextStyle(
-                            color: Colors.red, // Required asterisk color
+                            color: Colors.red,
                           ),
                         ),
                         Container(
                           padding: EdgeInsets.symmetric(vertical: 5.0),
                           child: TextFormField(
-                            controller: fullNameController,
+                            controller: stateController,
                             decoration: InputDecoration(
                               hintText: 'Enter your State',
                               border: OutlineInputBorder(),
                             ),
                           ),
                         ),
-                        // Other fields follow the same pattern
-                        // Repeat the structure for other fields such as Phone Number, etc.
                       ],
                     ),
-
                   ),
                   SizedBox(width: 20),
                   Expanded(
@@ -198,24 +338,21 @@ class _AddAddressPageState extends State<AddAddressPage> {
                         Text(
                           'District',
                           style: TextStyle(
-                            color: Colors.red, // Required asterisk color
+                            color: Colors.red,
                           ),
                         ),
                         Container(
                           padding: EdgeInsets.symmetric(vertical: 5.0),
                           child: TextFormField(
-                            controller: fullNameController,
+                            controller: districtController,
                             decoration: InputDecoration(
                               hintText: 'Enter your District',
                               border: OutlineInputBorder(),
                             ),
                           ),
                         ),
-                        // Other fields follow the same pattern
-                        // Repeat the structure for other fields such as Phone Number, etc.
                       ],
                     ),
-
                   ),
                 ],
               ),
@@ -229,51 +366,45 @@ class _AddAddressPageState extends State<AddAddressPage> {
                         Text(
                           'House No',
                           style: TextStyle(
-                            color: Colors.red, // Required asterisk color
+                            color: Colors.red,
                           ),
                         ),
                         Container(
                           padding: EdgeInsets.symmetric(vertical: 5.0),
                           child: TextFormField(
-                            controller: fullNameController,
+                            controller: houseNumberController,
                             decoration: InputDecoration(
                               hintText: 'Enter your House Number',
                               border: OutlineInputBorder(),
                             ),
                           ),
                         ),
-                        // Other fields follow the same pattern
-                        // Repeat the structure for other fields such as Phone Number, etc.
                       ],
                     ),
-
                   ),
                   SizedBox(width: 20),
                   Expanded(
-                    child:Column(
+                    child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           'Pin Code',
                           style: TextStyle(
-                            color: Colors.red, // Required asterisk color
+                            color: Colors.red,
                           ),
                         ),
                         Container(
                           padding: EdgeInsets.symmetric(vertical: 5.0),
                           child: TextFormField(
-                            controller: fullNameController,
+                            controller: pincodeController,
                             decoration: InputDecoration(
                               hintText: 'Enter your Pincode',
                               border: OutlineInputBorder(),
                             ),
                           ),
                         ),
-                        // Other fields follow the same pattern
-                        // Repeat the structure for other fields such as Phone Number, etc.
                       ],
                     ),
-
                   ),
                 ],
               ),
@@ -287,7 +418,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
                         Text(
                           'Address',
                           style: TextStyle(
-                            color: Colors.red, // Required asterisk color
+                            color: Colors.red,
                           ),
                         ),
                         TextField(
@@ -302,74 +433,72 @@ class _AddAddressPageState extends State<AddAddressPage> {
                 ],
               ),
               SizedBox(height: 20),
-            Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-            Text(
-            'Type of Address',
-            style: TextStyle(
-            color: Colors.red, // Required asterisk color
-            ),
-            ),
-            SizedBox(width: 20),
-            Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-            GestureDetector(
-            onTap: () {
-            setState(() {
-            addressType = 'Home';
-            });
-            },
-            child: Row(
-            children: [
-            Radio(
-            value: 'Home',
-            groupValue: addressType,
-            onChanged: (value) {
-            setState(() {
-            addressType = value;
-            });
-            },
-            ),
-            Text('Home'),
-            Icon(Icons.home),
-            ],
-            ),
-            ),
-            GestureDetector(
-            onTap: () {
-            setState(() {
-            addressType = 'Work';
-            });
-            },
-            child: Row(
-            children: [
-            Radio(
-            value: 'Work',
-            groupValue: addressType,
-            onChanged: (value) {
-            setState(() {
-            addressType = value;
-            });
-            },
-            ),
-            Text('Work'),
-            Icon(Icons.work),
-            ],
-            ),
-            ),
-            ],
-            ),
-            ],
-            ),
-
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Type of Address',
+                    style: TextStyle(
+                      color: Colors.red,
+                    ),
+                  ),
+                  SizedBox(width: 20),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            addressType = 'Home';
+                          });
+                        },
+                        child: Row(
+                          children: [
+                            Radio(
+                              value: 'Home',
+                              groupValue: addressType,
+                              onChanged: (value) {
+                                setState(() {
+                                  addressType = value;
+                                });
+                              },
+                            ),
+                            Text('Home'),
+                            Icon(Icons.home),
+                          ],
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            addressType = 'Work';
+                          });
+                        },
+                        child: Row(
+                          children: [
+                            Radio(
+                              value: 'Work',
+                              groupValue: addressType,
+                              onChanged: (value) {
+                                setState(() {
+                                  addressType = value;
+                                });
+                              },
+                            ),
+                            Text('Work'),
+                            Icon(Icons.work),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
               SizedBox(height: 20),
               Padding(
-                padding: const EdgeInsets. only(left: 150.0, bottom: 80),
+                padding: const EdgeInsets.only(left: 150.0, bottom: 80),
                 child: ElevatedButton(
                   onPressed: () {
-                    // Validate and save address
                     String fullName = fullNameController.text.trim();
                     String phone = phoneController.text.trim();
                     String altPhone = altPhoneController.text.trim();
@@ -385,19 +514,19 @@ class _AddAddressPageState extends State<AddAddressPage> {
                         houseNumber.isNotEmpty &&
                         pincode.isNotEmpty &&
                         address.isNotEmpty) {
-                      address += ', $houseNumber, $district, $state, $pincode';
+                      address = '$fullName, $phone, $address, $houseNumber, $district, $state, $pincode';
                       if (altPhone.isNotEmpty) {
                         address += ', $altPhone';
                       }
-                      address += ', $addressType'; // Append address type
+                      address += ', $addressType';
                       Navigator.pop(context, address);
                     } else {
-                      // Show error message or handle validation
+                      // Handle validation/error
                     }
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.blue, // Background color
-                    onPrimary: Colors.white, // Text color
+                    primary: Colors.blue,
+                    onPrimary: Colors.white,
                   ),
                   child: Text('Save'),
                 ),
@@ -410,4 +539,8 @@ class _AddAddressPageState extends State<AddAddressPage> {
   }
 }
 
-
+void main() {
+  runApp(MaterialApp(
+    home: AddressList(),
+  ));
+}
