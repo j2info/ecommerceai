@@ -467,7 +467,10 @@ class _AddAddressPageState extends State<AddAddressPage> {
                               },
                             ),
                             Text('Home'),
-                            Icon(Icons.home),
+                            Padding(
+                              padding: const EdgeInsets.all(9.0),
+                              child: Icon(Icons.home),
+                            ),
                           ],
                         ),
                       ),
@@ -489,7 +492,10 @@ class _AddAddressPageState extends State<AddAddressPage> {
                               },
                             ),
                             Text('Work'),
-                            Icon(Icons.work),
+                            Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Icon(Icons.work),
+                            ),
                           ],
                         ),
                       ),
