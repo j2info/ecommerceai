@@ -6,4 +6,7 @@ class FontConstant {
       textStyle: TextStyle(fontSize: 17, fontWeight: FontWeight.w600));
   static TextStyle defSmallFont = GoogleFonts.poppins(
       textStyle: TextStyle(fontSize: 15, fontWeight: FontWeight.w600));
+  static TextStyle appBarFont = GoogleFonts.poppins(
+    textStyle: TextStyle(fontWeight: FontWeight.w600, fontSize: 25),
+  );
 }

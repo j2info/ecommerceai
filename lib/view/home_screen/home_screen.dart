@@ -43,6 +43,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 Icons.notifications_active,
                 size: 30,
                 color: ColorConstant.Black,
+              )),
+          IconButton(
+              onPressed: () {},
+              icon: Icon(
+                Icons.chat_sharp,
+                size: 30,
+                color: ColorConstant.Black,
               ))
         ],
       ),
