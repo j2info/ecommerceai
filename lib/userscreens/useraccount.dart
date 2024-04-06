@@ -1,5 +1,7 @@
 import 'package:ecommerceai/userscreens/addresslist.dart';
+import 'package:ecommerceai/userscreens/chatscreen.dart';
 import 'package:flutter/material.dart';
+import 'package:ecommerceai/userscreens/profileedit.dart';
 
 void main() {
   runApp(MyApp());
@@ -46,7 +48,7 @@ class AccountPage extends StatelessWidget {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => AddressList()),
+                          MaterialPageRoute(builder: (context) => ChatScreen()),
                         );// Add onPressed functionality for chat icon
                       },
                     ),
@@ -102,34 +104,60 @@ class AccountPage extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      _buildListItem(
-                        icon: Icons.assignment,
-                        title: 'Orders',
-                        subheading: 'Check your order status',
+                      GestureDetector(
+                        onTap: () {
+                          // Navigate to the profile edit page
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => AddressList()),
+                          );
+                        },
+                        child: _buildListItem(
+                          icon: Icons.account_circle,
+                          title: 'Orders',
+                          subheading: 'Check your Order Status',
+                          context: context,
+                        ),
                       ),
                       SizedBox(height: 10),
                       _buildListItem(
                         icon: Icons.favorite,
                         title: 'Wishlist',
                         subheading: 'Check items in your wishlist',
+                        context: context,
+
                       ),
+
                       SizedBox(height: 10),
-                      _buildListItem(
-                        icon: Icons.account_circle,
-                        title: 'Account',
-                        subheading: 'Edit your profile',
+
+                      GestureDetector(
+                        onTap: () {
+                          // Navigate to the profile edit page
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => EditProfilePage(name: "John Deo",phoneNumber: "+1234567890",)),
+                          );
+                        },
+                        child: _buildListItem(
+                          icon: Icons.account_circle,
+                          title: 'Account',
+                          subheading: 'Edit your profile',
+                          context: context,
+                        ),
                       ),
                       SizedBox(height: 10),
                       _buildListItem(
                         icon: Icons.lock,
                         title: 'Password',
                         subheading: 'Change your password',
+                        context: context,
                       ),
                       SizedBox(height: 10),
                       _buildListItem(
                         icon: Icons.logout,
                         title: 'Logout',
                         subheading: 'Logout from your account',
+                        context: context,
                       ),
                     ],
                   ),
@@ -160,6 +188,7 @@ class AccountPage extends StatelessWidget {
     required IconData icon,
     required String title,
     required String subheading,
+    required BuildContext context,
   }) {
     return Container(
       decoration: BoxDecoration(
@@ -171,9 +200,23 @@ class AccountPage extends StatelessWidget {
         title: Text(title),
         subtitle: Text(subheading),
         onTap: () {
-          // Add functionality for each list item onTap
+          if (title == 'Account') {
+            // Navigate to the profile edit page
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => EditProfilePage(name: "",phoneNumber: "",)),
+            );
+          }else if (title == 'Orders') {
+            // Navigate to the AddressList
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => AddressList()),
+            );
+          } // Add functionality for each list item onTap
         },
+        //
       ),
+
     );
   }
 }
