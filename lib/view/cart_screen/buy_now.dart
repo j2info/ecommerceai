@@ -252,7 +252,7 @@ class _BuyNowScreenState extends State<BuyNowScreen> {
                           Row(
                             children: [
                               Text(
-                                "  Order No: 678234",
+                                "   Order No: 678234",
                                 textAlign: TextAlign.left,
                                 style: GoogleFonts.poppins(
                                     textStyle: TextStyle(
@@ -287,12 +287,12 @@ class _BuyNowScreenState extends State<BuyNowScreen> {
                       children: [
                         Container(
                           ///////////////////////////////////FOR IMAGE
-                          height: 160,
-                          width: 160,
+                          height: 150,
+                          width: 140,
                           color: ColorConstant.white,
                         ),
                         SizedBox(
-                          width: 15,
+                          width: 10,
                         ),
                         Expanded(
                           child: Container(
@@ -327,9 +327,9 @@ class _BuyNowScreenState extends State<BuyNowScreen> {
                                       ),
                                       onRatingUpdate: (index) {},
                                     ),
-                                    // SizedBox(
-                                    //   width: 10,
-                                    // ),
+                                    SizedBox(
+                                      width: 4,
+                                    ),
                                     Text(
                                       "\$ 1,099",
                                       style: GoogleFonts.poppins(
