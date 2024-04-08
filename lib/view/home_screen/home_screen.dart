@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -21,10 +21,12 @@ class _HomeScreenState extends State<HomeScreen> {
     Color.fromARGB(255, 160, 48, 252)
   ];
   List<String> data = [
+    "Product 0",
     "Product 1",
     "Product 2",
     "Product 3",
     "Product 4",
+    "Product 5",
     // Add more products as needed
   ];
   List<String> filteredData = [];
@@ -70,19 +72,33 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         actions: [
           IconButton(
-              onPressed: () {},
-              icon: Icon(
-                Icons.notifications_active,
-                size: 30,
-                color: ColorConstant.Black,
-              )),
+            onPressed: () {},
+            icon: Icon(
+              Icons.notifications_active,
+              size: 30,
+              color: ColorConstant.Black,
+            ),
+          ),
+          InkWell(
+            onTap: () {
+              // Search for the entered query
+              filterData(searchController.text);
+              setState(() {});
+            },
+            child: Icon(
+              Icons.search,
+              size: 30,
+              color: ColorConstant.Black,
+            ),
+          ),
           IconButton(
-              onPressed: () {},
-              icon: Icon(
-                Icons.chat_sharp,
-                size: 30,
-                color: ColorConstant.Black,
-              ))
+            onPressed: () {},
+            icon: Icon(
+              Icons.chat_sharp,
+              size: 30,
+              color: ColorConstant.Black,
+            ),
+          ),
         ],
       ),
       body: SingleChildScrollView(
@@ -95,22 +111,21 @@ class _HomeScreenState extends State<HomeScreen> {
                 width: 360,
                 child: TextField(
                   controller: searchController,
+                  onChanged: filterData,
                   decoration: InputDecoration(
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15),
-                          borderSide: BorderSide(color: ColorConstant.DefRed)),
-                      suffixIcon: InkWell(
-                          onTap: () {},
-                          child: Icon(
-                            Icons.search,
-                            size: 30,
-                          )),
-                      // prefixIcon: Icon(
-                      //   Icons.search,
-                      // ),
-                      hintText: "Search for Products, Brands",
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20))),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(15),
+                      borderSide: BorderSide(color: ColorConstant.DefRed),
+                    ),
+                    suffixIcon: Icon(
+                      Icons.search,
+                      size: 30,
+                    ),
+                    hintText: "Search for Products, Brands",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -121,26 +136,28 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 180,
               width: 400,
               child: CarouselSlider.builder(
-                  itemCount: MyColors.length,
-                  itemBuilder: (context, index, realIndex) => Container(
-                        //height: 10,
-                        //width: 400,
-                        decoration: BoxDecoration(color: MyColors[index]),
-                        child: Center(
-                          child: Text(
-                            "8.8 MEGA FLASH SALE",
-                            style: GoogleFonts.poppins(
-                                textStyle: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 30)),
-                          ),
+                itemCount: MyColors.length,
+                itemBuilder: (context, index, realIndex) => Container(
+                  decoration: BoxDecoration(color: MyColors[index]),
+                  child: Center(
+                    child: Text(
+                      "8.8 MEGA FLASH SALE",
+                      style: GoogleFonts.poppins(
+                        textStyle: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 30,
                         ),
                       ),
-                  options: CarouselOptions(
-                      autoPlay: true,
-                      scrollDirection: Axis.horizontal,
-                      viewportFraction: 1)),
+                    ),
+                  ),
+                ),
+                options: CarouselOptions(
+                  autoPlay: true,
+                  scrollDirection: Axis.horizontal,
+                  viewportFraction: 1,
+                ),
+              ),
             ),
             SizedBox(
               height: 20,
@@ -148,13 +165,14 @@ class _HomeScreenState extends State<HomeScreen> {
             HomeScreenWidget(
               onTap: () {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ProductBottomnavigationBar(),
-                    ));
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ProductBottomnavigationBar(),
+                  ),
+                );
               },
-              title: "Product ",
-            )
+              title: "Product",
+            ),
           ],
         ),
       ),

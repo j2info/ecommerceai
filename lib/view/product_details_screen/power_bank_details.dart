@@ -2,30 +2,26 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:ecommerceai/utils/color_constant/color_constant.dart';
 import 'package:ecommerceai/view/cart_screen/buy_now.dart';
 import 'package:ecommerceai/view/cart_screen/cart_screen.dart';
-
 import 'package:flutter/material.dart';
-
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class WatchDetailsScreen extends StatefulWidget {
-  WatchDetailsScreen({super.key});
+class PowerBankDetailsScreen extends StatefulWidget {
+  const PowerBankDetailsScreen({super.key});
 
   @override
-  State<WatchDetailsScreen> createState() => _WatchDetailsScreenState();
+  State<PowerBankDetailsScreen> createState() => _PowerBankDetailsScreenState();
 }
 
-class _WatchDetailsScreenState extends State<WatchDetailsScreen> {
-  //  final String description;
+class _PowerBankDetailsScreenState extends State<PowerBankDetailsScreen> {
   List<Color> MyColors = [
-    Color.fromARGB(255, 68, 252, 74),
-    Colors.blue,
-    Colors.red,
+    Colors.purple.shade400,
     Colors.yellow,
+    Colors.red,
+    Colors.greenAccent.shade400
   ];
 
   int currentIndex = 0;
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -106,7 +102,7 @@ class _WatchDetailsScreenState extends State<WatchDetailsScreen> {
                   children: [
                     Expanded(
                       child: Text(
-                        "Noise Smart Watch with Bluetooth Calling",
+                        "Noise Power Bank withy 5000 mah Battery",
                         style: GoogleFonts.poppins(
                             textStyle: TextStyle(
                                 fontSize: 20,

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:ecommerceai/utils/color_constant/color_constant.dart';
 import 'package:ecommerceai/utils/font_constant/font_constant.dart';
 import 'package:ecommerceai/view/product_details_screen/watch_details.dart';
@@ -14,70 +16,96 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  TextEditingController searchController = TextEditingController();
-  final _searchKey = GlobalKey<FormState>();
+  late TextEditingController _searchController;
+  late ImagePicker _imagePicker;
+  XFile? _pickedImage;
+  @override
+  void initState() {
+    super.initState();
+    _searchController = TextEditingController();
+    _imagePicker = ImagePicker();
+  }
+
+  Future<void> _pickImage() async {
+    final XFile? pickedImage =
+        await _imagePicker.pickImage(source: ImageSource.gallery);
+    if (pickedImage != null) {
+      setState(() {
+        _pickedImage = pickedImage;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Row(
-          children: [
-            Form(
-              key: _searchKey,
-              child: Container(
-                height: 50,
-                width: 280,
-                decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(20)),
-                child: TextFormField(
-                  controller: searchController,
-                  decoration: InputDecoration(
-                      suffixIcon: InkWell(
-                        onTap: () async {
-                          final ImagePicker picker = ImagePicker();
-                          // Pick an image.
-                          final XFile? image = await picker.pickImage(
-                              source: ImageSource.gallery);
-                        },
-                        child: Icon(
-                          Icons.camera_alt_outlined,
-                          size: 25,
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: Row(
+              children: [
+                Container(
+                  height: 50,
+                  width: 280,
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(20)),
+                  child: TextFormField(
+                    controller: _searchController,
+                    onChanged: (value) {
+                      setState(() {}); // Update the UI when text changes
+                    },
+                    decoration: InputDecoration(
+                        suffixIcon: InkWell(
+                          onTap: _pickImage,
+                          child: Icon(
+                            Icons.camera_alt_outlined,
+                            size: 25,
+                          ),
                         ),
-                      ),
-                      //focusColor: ColorConstant.DefRed,
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: ColorConstant.DefRed),
-                      ),
-                      filled: true,
-                      fillColor: ColorConstant.BottomnavColor,
-                      hintText: "Search",
-                      prefixIcon:
-                          InkWell(onTap: () {}, child: Icon(Icons.search)),
-                      border: OutlineInputBorder(
+                        //focusColor: ColorConstant.DefRed,
+                        focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: ColorConstant.DefRed),
-                          borderRadius: BorderRadius.circular(10))),
+                        ),
+                        filled: true,
+                        fillColor: ColorConstant.BottomnavColor,
+                        hintText: "Search",
+                        prefixIcon:
+                            InkWell(onTap: () {}, child: Icon(Icons.search)),
+                        border: OutlineInputBorder(
+                            borderSide: BorderSide(color: ColorConstant.DefRed),
+                            borderRadius: BorderRadius.circular(10))),
+                  ),
                 ),
-              ),
+                SizedBox(
+                  width: 2.5,
+                ),
+                TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    "Search",
+                    style: GoogleFonts.poppins(
+                        textStyle: TextStyle(
+                            fontSize: 15,
+                            color: ColorConstant.DefRed,
+                            fontWeight: FontWeight.w600)),
+                  ),
+                )
+              ],
             ),
-            SizedBox(
-              width: 2.5,
-            ),
-            TextButton(
-              onPressed: () {},
-              child: Text(
-                "Search",
-                style: GoogleFonts.poppins(
-                    textStyle: TextStyle(
-                        fontSize: 15,
-                        color: ColorConstant.DefRed,
-                        fontWeight: FontWeight.w600)),
-              ),
-            )
-          ],
-        ),
+          ),
+          SizedBox(height: 20),
+          _pickedImage != null
+              ? Container(
+                  height: 100,
+                  width: 200,
+                  child: Image.file(
+                    File(_pickedImage!.path),
+                    fit: BoxFit.cover,
+                  ))
+              : Container(),
+        ],
       ),
     );
   }

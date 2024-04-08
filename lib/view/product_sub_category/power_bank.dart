@@ -1,4 +1,5 @@
 import 'package:ecommerceai/utils/color_constant/color_constant.dart';
+import 'package:ecommerceai/view/product_details_screen/power_bank_details.dart';
 import 'package:ecommerceai/view/product_details_screen/watch_details.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -34,7 +35,7 @@ class PowerBankScreen extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => WatchDetailsScreen(),
+                    builder: (context) => PowerBankDetailsScreen(),
                   ));
             },
             child: Container(
@@ -51,7 +52,7 @@ class PowerBankScreen extends StatelessWidget {
                     child: Container(
                       height: 150,
                       width: 130,
-                      color: Colors.amber,
+                      color: Colors.purple.shade400,
                     ),
                   ),
                   Container(
@@ -64,7 +65,7 @@ class PowerBankScreen extends StatelessWidget {
                           children: [
                             Flexible(
                               child: Text(
-                                "Noise Smart Watch With Bluetooth Calling",
+                                "Noise Power Bank with 5000 mah Battery",
                                 style: GoogleFonts.poppins(
                                     textStyle: TextStyle(
                                         fontWeight: FontWeight.bold,
