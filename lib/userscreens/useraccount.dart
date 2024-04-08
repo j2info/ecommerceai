@@ -2,6 +2,7 @@ import 'package:ecommerceai/userscreens/addresslist.dart';
 import 'package:ecommerceai/userscreens/chatscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerceai/userscreens/profileedit.dart';
+import 'package:ecommerceai/userscreens/notification screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -43,14 +44,28 @@ class AccountPage extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    IconButton(
-                      icon: Icon(Icons.chat),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => ChatScreen()),
-                        );// Add onPressed functionality for chat icon
-                      },
+                    Row(
+                      children: [
+                        IconButton(
+                          icon: Icon(Icons.notifications), // Notification icon
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => NotificationScreen()),
+                            );
+                            // Add onPressed functionality for notification icon
+                          },
+                        ),
+                        IconButton(
+                          icon: Icon(Icons.chat),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => ChatScreen()),
+                            );
+                          },
+                        ),
+                      ],
                     ),
                   ],
                 ),

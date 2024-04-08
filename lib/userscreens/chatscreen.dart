@@ -9,16 +9,27 @@ class ChatScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        primaryColor: Color(0xFF075E54), // WhatsApp green
+        primaryColor: Color(0xFF33F5DE), // WhatsApp green
         scaffoldBackgroundColor: Colors.white,
       ),
       home: Scaffold(
+
         appBar: AppBar(
-          title: Text(
-            'WhatsApp Chat',
-            style: TextStyle(color: Colors.white),
+          backgroundColor: Colors.lightBlueAccent, // WhatsApp green
+          title: SizedBox(
+            height: 40.0, // Set the height of the SizedBox
+            child: Container(
+              padding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Text(
+                'How can I help you?',
+                style: TextStyle(color: Colors.black12, fontWeight: FontWeight.bold),
+              ),
+            ),
           ),
-          backgroundColor: Color(0xFF075E54), // WhatsApp green
         ),
         body: ChatBody(),
       ),
@@ -88,15 +99,31 @@ class MessageBubble extends StatelessWidget {
           margin: EdgeInsets.all(8.0),
           padding: EdgeInsets.all(12.0),
           decoration: BoxDecoration(
-            color: isMe ? Color(0xFFDCF8C6) : Colors.grey[300],
-            borderRadius: BorderRadius.circular(8.0),
+            gradient: isMe
+                ? LinearGradient(
+              colors: [Color(0xFFDCF8C6), Colors.green], // Gradient colors for the user's messages
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            )
+                : LinearGradient(
+              colors: [Colors.grey[300]!, Colors.red], // Gradient colors for other party's messages
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+            borderRadius: BorderRadius.only(
+              topLeft: isMe ? Radius.circular(20.0) : Radius.circular(0.0),
+              topRight: isMe ? Radius.circular(0.0) : Radius.circular(20.0),
+              bottomLeft: Radius.circular(20.0),
+              bottomRight: Radius.circular(20.0),
+            ),
           ),
           child: Text(
             message,
-            style: TextStyle(color: isMe ? Colors.black : Colors.black),
+            style: TextStyle(color: isMe ? Colors.black : Colors.white),
           ),
         ),
       ],
     );
   }
 }
+
