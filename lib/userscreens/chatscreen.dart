@@ -14,19 +14,22 @@ class ChatScreen extends StatelessWidget {
       ),
       home: Scaffold(
 
-        appBar: AppBar(
-          backgroundColor: Colors.lightBlueAccent, // WhatsApp green
-          title: SizedBox(
-            height: 40.0, // Set the height of the SizedBox
-            child: Container(
-              padding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Text(
-                'How can I help you?',
-                style: TextStyle(color: Colors.black12, fontWeight: FontWeight.bold),
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(90.0),
+          child: AppBar(
+            backgroundColor: Colors.lightBlueAccent, // WhatsApp green
+            title: SizedBox(
+              height: 40.0, // Set the height of the SizedBox
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Text(
+                  'How can I help you?',
+                  style: TextStyle(color: Colors.black12, fontWeight: FontWeight.bold),
+                ),
               ),
             ),
           ),
@@ -40,6 +43,7 @@ class ChatScreen extends StatelessWidget {
 class ChatBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
     return Column(
       children: [
         Expanded(
