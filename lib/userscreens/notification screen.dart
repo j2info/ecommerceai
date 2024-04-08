@@ -9,7 +9,7 @@ class NotificationScreen extends StatelessWidget {
         title: Text('Notifications'),
       ),
       body: ListView.builder(
-        itemCount: 10, // Assuming there are 10 notifications
+        itemCount: 10,
         itemBuilder: (context, index) {
           return NotificationCard(
             title: 'Your product is ready to be delivered',

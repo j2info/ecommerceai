@@ -33,7 +33,7 @@ class LoginPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Image.asset(
-                      'images/image2.png', // Replace this with the path to your image icon
+                      'images/image2.png',
                       width: 40, // Adjust the width of the image
                       height: 50, // Adjust the height of the image
                     ),
@@ -76,7 +76,7 @@ class LoginPage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 10.0),
                   child: TextField(
-                    keyboardType: TextInputType.phone, // Set keyboard type to phone
+                    keyboardType: TextInputType.phone,
                     decoration: InputDecoration(
                       hintText: 'Mobile Number', // Placeholder text
                       hintStyle: TextStyle(color: Colors.grey[400]), // Placeholder color
