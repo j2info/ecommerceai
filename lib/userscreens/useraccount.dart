@@ -79,11 +79,21 @@ class AccountPage extends StatelessWidget {
                     color: Colors.lightBlue[100],
                     borderRadius: BorderRadius.circular(10.0),
                   ),
-                  child: Row(
+                  child:Row(
                     children: [
-                      Icon(
-                        Icons.person,
-                        size: 50,
+                      Container(
+                        width: 60, // Adjust the width and height as needed
+                        height: 60,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.white,
+                        ),
+                        child: Center(
+                          child: Icon(
+                            Icons.person,
+                            size: 50,
+                          ),
+                        ),
                       ),
                       SizedBox(width: 20),
                       Padding(
@@ -110,6 +120,7 @@ class AccountPage extends StatelessWidget {
                       ),
                     ],
                   ),
+
                 ),
               ),
               SizedBox(height: 20),
