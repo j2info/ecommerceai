@@ -2,10 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
+
+// typedef UpdateProfileCallback = void Function(String name, String phoneNumber, File? image);
+
+
 class EditProfilePage extends StatefulWidget {
 
   final String name;
   final String phoneNumber;
+
 
   EditProfilePage({required this.name, required this.phoneNumber});
 
@@ -138,6 +143,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 padding: const EdgeInsets.all(15.0),
                 child: ElevatedButton(
                   onPressed: () {
+                    // Call the callback function passing the updated data
+                    // widget.updateProfile(_nameController.text, _phoneController.text, _image);
+                    // Navigate back to the previous screen
+                    // Navigator.pop(context);
                     // Update profile logic
                   },
                   style: ElevatedButton.styleFrom(

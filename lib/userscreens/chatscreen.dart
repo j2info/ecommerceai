@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'responsiveinfo.dart'; // Import the ResponsiveInfo class
 
 void main() {
   runApp(ChatScreen());
@@ -13,30 +12,29 @@ class ChatScreen extends StatelessWidget {
         primaryColor: Color(0xFF33F5DE), // WhatsApp green
         scaffoldBackgroundColor: Colors.white,
       ),
-      home: ResponsiveLayoutTemplate(
-        child: Scaffold(
-          appBar: PreferredSize(
-            preferredSize: Size.fromHeight(90.0),
-            child: AppBar(
-              backgroundColor: Colors.lightBlueAccent, // WhatsApp green
-              title: SizedBox(
-                height: 40.0, // Set the height of the SizedBox
-                child: Container(
-                  padding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Text(
-                    'How can I help you?',
-                    style: TextStyle(color: Colors.black12, fontWeight: FontWeight.bold),
-                  ),
+      home: Scaffold(
+
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(90.0),
+          child: AppBar(
+            backgroundColor: Colors.lightBlueAccent, // WhatsApp green
+            title: SizedBox(
+              height: 40.0, // Set the height of the SizedBox
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Text(
+                  'How can I help you?',
+                  style: TextStyle(color: Colors.black12, fontWeight: FontWeight.bold),
                 ),
               ),
             ),
           ),
-          body: ChatBody(),
         ),
+        body: ChatBody(),
       ),
     );
   }
@@ -45,7 +43,6 @@ class ChatScreen extends StatelessWidget {
 class ChatBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // bool isMobile = ResponsiveInfo.isMobile(context); // Determine if the device is mobile
 
     return Column(
       children: [
@@ -130,26 +127,6 @@ class MessageBubble extends StatelessWidget {
           ),
         ),
       ],
-    );
-  }
-}
-
-class ResponsiveLayoutTemplate extends StatelessWidget {
-  final Widget child;
-
-  ResponsiveLayoutTemplate({required this.child});
-
-  @override
-  Widget build(BuildContext context) {
-    bool isMobile = ResponsiveInfo.isMobile(context); // Determine if the device is mobile
-
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        // Determine if the device is mobile or not based on the width
-        return Scaffold(
-          body: isMobile ? SingleChildScrollView(child: child) : Center(child: child),
-        );
-      },
     );
   }
 }

@@ -5,19 +5,25 @@ class NotificationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blueGrey,
-        title: Text('Notifications'),
+        backgroundColor: Colors.blue,
+        title: Padding(
+          padding: const EdgeInsets.all(13.0),
+          child: Text('Notifications'),
+        ),
       ),
-      body: ListView.builder(
-        itemCount: 10,
-        itemBuilder: (context, index) {
-          return NotificationCard(
-            title: 'Your product is ready to be delivered',
-            timeAgo: '4 days ago',
-            hasUnread: true,
-            description: 'This is a description for the notification.Lorem Ipsum is simply dummy text of the printing and typesetting industry. ',
-          );
-        },
+      body: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: ListView.builder(
+          itemCount: 10,
+          itemBuilder: (context, index) {
+            return NotificationCard(
+              title: 'Your product is ready to be delivered',
+              timeAgo: '4 days ago',
+              hasUnread: true,
+              description: 'This is a description for the notification.Lorem Ipsum is simply dummy text of the printing and typesetting industry. ',
+            );
+          },
+        ),
       ),
     );
   }
