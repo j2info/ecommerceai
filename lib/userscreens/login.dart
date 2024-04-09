@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Shopee Login',
-      theme: ThemeData.light(), // Set the theme to light
+      theme: ThemeData.light(),
       home: LoginPage(),
     );
   }
@@ -24,7 +24,7 @@ class LoginPage extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          SizedBox(height: 50), // Add space from top
+          SizedBox(height: 50),
           Center(
             child: Container(
               child: Padding(
@@ -34,8 +34,8 @@ class LoginPage extends StatelessWidget {
                   children: <Widget>[
                     Image.asset(
                       'images/image2.png',
-                      width: 40, // Adjust the width of the image
-                      height: 50, // Adjust the height of the image
+                      width: 40,
+                      height: 50,
                     ),
                     SizedBox(width: 8), // Adjust the spacing between image and text
                     Text(

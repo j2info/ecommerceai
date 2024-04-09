@@ -82,7 +82,7 @@ class AccountPage extends StatelessWidget {
                   child:Row(
                     children: [
                       Container(
-                        width: 60, // Adjust the width and height as needed
+                        width: 60,
                         height: 60,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,

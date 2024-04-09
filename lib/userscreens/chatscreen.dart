@@ -48,13 +48,13 @@ class ChatBody extends StatelessWidget {
       children: [
         Expanded(
           child: ListView.builder(
-            reverse: true, // to start from bottom like WhatsApp
-            itemCount: 20, // replace with the actual number of messages
+            reverse: true,
+            itemCount: 20,
             itemBuilder: (BuildContext context, int index) {
-              // Replace MessageBubble with your custom message bubble widget
+
               return MessageBubble(
-                isMe: index % 2 == 0, // Just for demonstration, you can modify this
-                message: 'This is message $index', // Replace with actual message
+                isMe: index % 2 == 0,
+                message: 'This is message $index',
               );
             },
           ),

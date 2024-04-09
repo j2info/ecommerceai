@@ -172,8 +172,8 @@ class OTPDigitBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 65, // Adjust the width of each box
-      height: 65, // Adjust the height of each box
+      width: 65,
+      height: 65,
       alignment: Alignment.center,
       decoration: BoxDecoration(
         color: Colors.grey[200],
@@ -181,13 +181,13 @@ class OTPDigitBox extends StatelessWidget {
         borderRadius: BorderRadius.circular(5), // Border radius
       ),
       child: TextField(
-        keyboardType: TextInputType.number, // Set keyboard type to number
-        maxLength: 1, // Allow only one digit
+        keyboardType: TextInputType.number,
+        maxLength: 1,
         textAlign: TextAlign.center,
         decoration: InputDecoration(
           counterText: '', // Hide character counter
           border: InputBorder.none, // Hide TextField border
-          contentPadding: EdgeInsets.zero, // Remove any padding
+          contentPadding: EdgeInsets.zero,
         ),
       ),
     );

@@ -31,7 +31,7 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsets.only(top: 70, left: 90), // Add vertical padding to the title
+            padding: EdgeInsets.only(top: 70, left: 90),
             child: Row(
               children: [
                 Icon(Icons.language,size: 30,),
@@ -98,13 +98,13 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
       padding: EdgeInsets.all(7),// Add spacing between containers
       decoration: BoxDecoration(
         color: Colors.grey[200],
-        border: Border.all(color: Colors.grey, width: 1), // Change border color to red
+        border: Border.all(color: Colors.grey, width: 1),
       ),
       child: Row(
         children: [
           Theme(
             data: ThemeData(
-              unselectedWidgetColor: Colors.red, // Change the default color of the radio button
+              unselectedWidgetColor: Colors.red,
             ),
             child: Radio(
 
