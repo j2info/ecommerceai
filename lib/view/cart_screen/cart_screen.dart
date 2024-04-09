@@ -1,5 +1,6 @@
 import 'package:ecommerceai/screen/responsive.dart';
 import 'package:ecommerceai/utils/color_constant/color_constant.dart';
+import 'package:ecommerceai/utils/image_constant/image_constant.dart';
 import 'package:ecommerceai/view/cart_screen/buy_now.dart';
 
 import 'package:flutter/material.dart';
@@ -71,7 +72,18 @@ class _CartScreenState extends State<CartScreen> {
                           Container(
                             height: 140,
                             width: 140,
-                            color: Colors.blueAccent,
+                            decoration: BoxDecoration(
+                                color: Colors.blueAccent,
+                                image: DecorationImage(
+                                  image: AssetImage(ImageConstant.CommonImage),
+                                  fit: BoxFit.cover,
+                                ),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black,
+                                    blurRadius: 2,
+                                  )
+                                ]),
                           ),
                           SizedBox(
                             width: 10,
@@ -370,9 +382,20 @@ class _CartScreenState extends State<CartScreen> {
                       child: Row(
                         children: [
                           Container(
-                            height: 300,
+                            height: 280,
                             width: 300,
-                            color: Colors.blueAccent,
+                            decoration: BoxDecoration(
+                                color: Colors.blueAccent,
+                                image: DecorationImage(
+                                  image: AssetImage(ImageConstant.CommonImage),
+                                  fit: BoxFit.cover,
+                                ),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black,
+                                    blurRadius: 2,
+                                  )
+                                ]),
                           ),
                           SizedBox(
                             width: 10,
@@ -430,7 +453,8 @@ class _CartScreenState extends State<CartScreen> {
                                       width: 110,
                                       decoration: BoxDecoration(
                                           border: Border.all(
-                                              color: ColorConstant.DefRed)),
+                                              color: ColorConstant.DefRed,
+                                              width: 2)),
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceEvenly,

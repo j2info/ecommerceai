@@ -2,6 +2,7 @@ import 'package:ecommerceai/screen/responsive.dart';
 import 'package:ecommerceai/utils/color_constant/color_constant.dart';
 import 'package:ecommerceai/utils/font_constant/font_constant.dart';
 import 'package:ecommerceai/view/category_screen/category_widget.dart';
+import 'package:ecommerceai/view/category_screen/responsive_category_widget.dart';
 import 'package:flutter/material.dart';
 
 class CategoryScreen extends StatefulWidget {
@@ -130,7 +131,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
             tab: SingleChildScrollView(
               child: Column(
                 children: [
-                  CategoryScreenWidget(
+                  ResponsiveCategoryWidget(
                     onTap: () {
                       _handleCategoryTap(0);
                     },
@@ -142,7 +143,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                     product4: "Motorola",
                     categoryName: "Mobiles",
                   ),
-                  CategoryScreenWidget(
+                  ResponsiveCategoryWidget(
                     onTap: () {
                       _handleCategoryTap(1);
                     },
@@ -154,7 +155,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                     product4: "Smart Watch",
                     categoryName: "Electronics",
                   ),
-                  CategoryScreenWidget(
+                  ResponsiveCategoryWidget(
                     onTap: () {
                       _handleCategoryTap(2);
                     },
@@ -166,7 +167,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                     product4: "Scisssors",
                     categoryName: "Stationary",
                   ),
-                  CategoryScreenWidget(
+                  ResponsiveCategoryWidget(
                     onTap: () {
                       _handleCategoryTap(3);
                     },
@@ -178,7 +179,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                     product4: "Milk",
                     categoryName: "Grocery",
                   ),
-                  CategoryScreenWidget(
+                  ResponsiveCategoryWidget(
                     onTap: () {
                       _handleCategoryTap(4);
                     },

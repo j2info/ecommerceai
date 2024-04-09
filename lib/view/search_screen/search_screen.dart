@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:ecommerceai/screen/responsive.dart';
 import 'package:ecommerceai/utils/color_constant/color_constant.dart';
 import 'package:ecommerceai/utils/font_constant/font_constant.dart';
 import 'package:ecommerceai/view/product_details_screen/watch_details.dart';
@@ -39,74 +40,160 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(16),
-            child: Row(
-              children: [
-                Container(
-                  height: 50,
-                  width: 280,
-                  decoration:
-                      BoxDecoration(borderRadius: BorderRadius.circular(20)),
-                  child: TextFormField(
-                    controller: _searchController,
-                    onChanged: (value) {
-                      setState(() {}); // Update the UI when text changes
-                    },
-                    decoration: InputDecoration(
-                        suffixIcon: InkWell(
-                          onTap: _pickImage,
-                          child: Icon(
-                            Icons.camera_alt_outlined,
-                            size: 25,
-                          ),
-                        ),
-                        //focusColor: ColorConstant.DefRed,
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: ColorConstant.DefRed),
-                        ),
-                        filled: true,
-                        fillColor: ColorConstant.BottomnavColor,
-                        hintText: "Search",
-                        prefixIcon:
-                            InkWell(onTap: () {}, child: Icon(Icons.search)),
-                        border: OutlineInputBorder(
-                            borderSide: BorderSide(color: ColorConstant.DefRed),
-                            borderRadius: BorderRadius.circular(10))),
-                  ),
+        appBar: AppBar(),
+        body: ResponsiveWidget(
+          mobile: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(16),
+                child: Row(
+                  children: [
+                    Container(
+                      height: 50,
+                      width: 280,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20)),
+                      child: TextFormField(
+                        controller: _searchController,
+                        onChanged: (value) {
+                          setState(() {}); // Update the UI when text changes
+                        },
+                        decoration: InputDecoration(
+                            suffixIcon: InkWell(
+                              onTap: _pickImage,
+                              child: Icon(
+                                Icons.camera_alt_outlined,
+                                size: 25,
+                              ),
+                            ),
+                            //focusColor: ColorConstant.DefRed,
+                            focusedBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: ColorConstant.DefRed),
+                            ),
+                            filled: true,
+                            fillColor: ColorConstant.BottomnavColor,
+                            hintText: "Search",
+                            prefixIcon: InkWell(
+                                onTap: () {}, child: Icon(Icons.search)),
+                            border: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: ColorConstant.DefRed),
+                                borderRadius: BorderRadius.circular(10))),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 2.5,
+                    ),
+                    TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        "Search",
+                        style: GoogleFonts.poppins(
+                            textStyle: TextStyle(
+                                fontSize: 15,
+                                color: ColorConstant.DefRed,
+                                fontWeight: FontWeight.w600)),
+                      ),
+                    )
+                  ],
                 ),
-                SizedBox(
-                  width: 2.5,
-                ),
-                TextButton(
-                  onPressed: () {},
-                  child: Text(
-                    "Search",
-                    style: GoogleFonts.poppins(
-                        textStyle: TextStyle(
-                            fontSize: 15,
-                            color: ColorConstant.DefRed,
-                            fontWeight: FontWeight.w600)),
-                  ),
-                )
-              ],
-            ),
+              ),
+              SizedBox(height: 20),
+              _pickedImage != null
+                  ? Container(
+                      height: 100,
+                      width: 200,
+                      child: Image.file(
+                        File(_pickedImage!.path),
+                        fit: BoxFit.cover,
+                      ))
+                  : Container(),
+            ],
           ),
-          SizedBox(height: 20),
-          _pickedImage != null
-              ? Container(
-                  height: 100,
-                  width: 200,
-                  child: Image.file(
-                    File(_pickedImage!.path),
-                    fit: BoxFit.cover,
-                  ))
-              : Container(),
-        ],
-      ),
-    );
+          tab: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(16),
+                child: Row(
+                  children: [
+                    Container(
+                      height: 100,
+                      width: 650,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20)),
+                      child: TextFormField(
+                        controller: _searchController,
+                        onChanged: (value) {
+                          setState(() {}); // Update the UI when text changes
+                        },
+                        decoration: InputDecoration(
+                            suffixIcon: InkWell(
+                              onTap: _pickImage,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Icon(
+                                  Icons.camera_alt_outlined,
+                                  size: 40,
+                                ),
+                              ),
+                            ),
+                            //focusColor: ColorConstant.DefRed,
+                            focusedBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: ColorConstant.DefRed),
+                            ),
+                            filled: true,
+                            fillColor: ColorConstant.BottomnavColor,
+                            hintText: "Search",
+                            hintStyle: TextStyle(fontSize: 20),
+                            prefixIcon: InkWell(
+                                onTap: () {},
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Icon(
+                                    Icons.search,
+                                    size: 40,
+                                  ),
+                                )),
+                            border: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: ColorConstant.DefRed),
+                                borderRadius: BorderRadius.circular(10))),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    TextButton(
+                      onPressed: () {},
+                      child: Padding(
+                        padding: const EdgeInsets.only(bottom: 32),
+                        child: Text(
+                          "Search",
+                          style: GoogleFonts.poppins(
+                              textStyle: TextStyle(
+                                  fontSize: 20,
+                                  color: ColorConstant.DefRed,
+                                  fontWeight: FontWeight.w600)),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              SizedBox(height: 20),
+              _pickedImage != null
+                  ? Container(
+                      height: 100,
+                      width: 200,
+                      child: Image.file(
+                        File(_pickedImage!.path),
+                        fit: BoxFit.cover,
+                      ))
+                  : Container(),
+            ],
+          ),
+        ));
   }
 }

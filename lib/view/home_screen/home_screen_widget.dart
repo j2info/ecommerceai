@@ -1,4 +1,5 @@
 import 'package:ecommerceai/utils/color_constant/color_constant.dart';
+import 'package:ecommerceai/utils/image_constant/image_constant.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreenWidget extends StatelessWidget {
@@ -23,12 +24,18 @@ class HomeScreenWidget extends StatelessWidget {
         itemBuilder: (context, index) => InkWell(
           onTap: onTap,
           child: Container(
-            decoration: BoxDecoration(color: ColorConstant.white, boxShadow: [
-              BoxShadow(
-                color: Colors.black,
-                blurRadius: 2,
-              )
-            ]),
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(ImageConstant.CommonImage),
+                  fit: BoxFit.cover,
+                ),
+                color: ColorConstant.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black,
+                    blurRadius: 2,
+                  )
+                ]),
             height: 200,
             width: 200,
             child: Column(

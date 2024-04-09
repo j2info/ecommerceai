@@ -219,7 +219,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           textStyle: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
-                            fontSize: 30,
+                            fontSize: 50,
                           ),
                         ),
                       ),
