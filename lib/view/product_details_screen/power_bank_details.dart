@@ -110,13 +110,20 @@ class _PowerBankDetailsScreenState extends State<PowerBankDetailsScreen> {
                                 fontWeight: FontWeight.bold)),
                       ),
                     ),
-                    Text(
-                      "\$ 1,500",
-                      style: GoogleFonts.poppins(
-                          textStyle: TextStyle(
-                              fontSize: 17,
-                              color: ColorConstant.Black,
-                              fontWeight: FontWeight.bold)),
+                    Column(
+                      children: [
+                        SizedBox(
+                          height: 50,
+                        ),
+                        Text(
+                          "\$ 1,500",
+                          style: GoogleFonts.poppins(
+                              textStyle: TextStyle(
+                                  fontSize: 17,
+                                  color: ColorConstant.Black,
+                                  fontWeight: FontWeight.bold)),
+                        ),
+                      ],
                     )
                   ],
                 ),

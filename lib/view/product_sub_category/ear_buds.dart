@@ -56,7 +56,7 @@ class EarBudsScreen extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    height: 100,
+                    height: 150,
                     width: 200,
                     color: ColorConstant.white,
                     child: Column(
@@ -75,6 +75,9 @@ class EarBudsScreen extends StatelessWidget {
                               ),
                             ),
                           ],
+                        ),
+                        SizedBox(
+                          height: 25,
                         ),
                         Text(
                           "\$1,099",

@@ -1,6 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:ecommerceai/screen/responsive.dart';
 import 'package:ecommerceai/utils/color_constant/color_constant.dart';
 import 'package:ecommerceai/view/home_screen/home_screen_widget.dart';
+import 'package:ecommerceai/view/home_screen/responsive_home_widget.dart';
 import 'package:ecommerceai/view/product_details_screen/watch_details.dart';
 import 'package:ecommerceai/view/product_sub_category/product_bottom_nav.dart';
 import 'package:flutter/material.dart';
@@ -55,127 +57,197 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: Icon(
-          Icons.shopping_cart,
-          size: 30,
-        ),
-        title: Text(
-          "SHOPEE",
-          style: GoogleFonts.poppins(
-            textStyle: TextStyle(
-                color: ColorConstant.DefRed,
-                letterSpacing: 2,
-                fontWeight: FontWeight.w800,
-                fontSize: 28),
+        appBar: AppBar(
+          leading: Icon(
+            Icons.shopping_cart,
+            size: 30,
           ),
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.notifications_active,
-              size: 30,
-              color: ColorConstant.Black,
+          title: Text(
+            "SHOPEE",
+            style: GoogleFonts.poppins(
+              textStyle: TextStyle(
+                  color: ColorConstant.DefRed,
+                  letterSpacing: 2,
+                  fontWeight: FontWeight.w800,
+                  fontSize: 28),
             ),
           ),
-          InkWell(
-            onTap: () {
-              // Search for the entered query
-              filterData(searchController.text);
-              setState(() {});
-            },
-            child: Icon(
-              Icons.search,
-              size: 30,
-              color: ColorConstant.Black,
-            ),
-          ),
-          IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.chat_sharp,
-              size: 30,
-              color: ColorConstant.Black,
-            ),
-          ),
-        ],
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: Container(
-                height: 70,
-                width: 360,
-                child: TextField(
-                  controller: searchController,
-                  onChanged: filterData,
-                  decoration: InputDecoration(
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15),
-                      borderSide: BorderSide(color: ColorConstant.DefRed),
-                    ),
-                    suffixIcon: Icon(
-                      Icons.search,
-                      size: 30,
-                    ),
-                    hintText: "Search for Products, Brands",
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                  ),
-                ),
+          actions: [
+            IconButton(
+              onPressed: () {},
+              icon: Icon(
+                Icons.notifications_active,
+                size: 30,
+                color: ColorConstant.Black,
               ),
             ),
-            SizedBox(
-              height: 20,
+            InkWell(
+              onTap: () {
+                // Search for the entered query
+                filterData(searchController.text);
+                setState(() {});
+              },
+              child: Icon(
+                Icons.search,
+                size: 30,
+                color: ColorConstant.Black,
+              ),
             ),
-            Container(
-              height: 180,
-              width: 400,
-              child: CarouselSlider.builder(
-                itemCount: MyColors.length,
-                itemBuilder: (context, index, realIndex) => Container(
-                  decoration: BoxDecoration(color: MyColors[index]),
-                  child: Center(
-                    child: Text(
-                      "8.8 MEGA FLASH SALE",
-                      style: GoogleFonts.poppins(
-                        textStyle: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 30,
-                        ),
+            IconButton(
+              onPressed: () {},
+              icon: Icon(
+                Icons.chat_sharp,
+                size: 30,
+                color: ColorConstant.Black,
+              ),
+            ),
+          ],
+        ),
+        body: ResponsiveWidget(
+          mobile: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(16),
+                child: Container(
+                  height: 70,
+                  width: 360,
+                  child: TextField(
+                    controller: searchController,
+                    onChanged: filterData,
+                    decoration: InputDecoration(
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide(color: ColorConstant.DefRed),
+                      ),
+                      suffixIcon: Icon(
+                        Icons.search,
+                        size: 30,
+                      ),
+                      hintText: "Search for Products, Brands",
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
                       ),
                     ),
                   ),
                 ),
-                options: CarouselOptions(
-                  autoPlay: true,
-                  scrollDirection: Axis.horizontal,
-                  viewportFraction: 1,
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Container(
+                height: 180,
+                width: 400,
+                child: CarouselSlider.builder(
+                  itemCount: MyColors.length,
+                  itemBuilder: (context, index, realIndex) => Container(
+                    decoration: BoxDecoration(color: MyColors[index]),
+                    child: Center(
+                      child: Text(
+                        "8.8 MEGA FLASH SALE",
+                        style: GoogleFonts.poppins(
+                          textStyle: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 30,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  options: CarouselOptions(
+                    autoPlay: true,
+                    scrollDirection: Axis.horizontal,
+                    viewportFraction: 1,
+                  ),
                 ),
               ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            HomeScreenWidget(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ProductBottomnavigationBar(),
+              SizedBox(
+                height: 20,
+              ),
+              HomeScreenWidget(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ProductBottomnavigationBar(),
+                    ),
+                  );
+                },
+                title: "Product",
+              ),
+            ],
+          ),
+          tab: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(16),
+                child: Container(
+                  height: 100,
+                  width: 700,
+                  child: TextField(
+                    controller: searchController,
+                    onChanged: filterData,
+                    decoration: InputDecoration(
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide(color: ColorConstant.DefRed),
+                      ),
+                      suffixIcon: Icon(
+                        Icons.search,
+                        size: 40,
+                      ),
+                      hintText: "Search for Products, Brands",
+                      hintStyle: TextStyle(fontSize: 25),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
                   ),
-                );
-              },
-              title: "Product",
-            ),
-          ],
-        ),
-      ),
-    );
+                ),
+              ),
+              Container(
+                height: 400,
+                width: 800,
+                child: CarouselSlider.builder(
+                  itemCount: MyColors.length,
+                  itemBuilder: (context, index, realIndex) => Container(
+                    decoration: BoxDecoration(color: MyColors[index]),
+                    child: Center(
+                      child: Text(
+                        "8.8 MEGA FLASH SALE",
+                        style: GoogleFonts.poppins(
+                          textStyle: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 30,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  options: CarouselOptions(
+                    autoPlay: true,
+                    scrollDirection: Axis.horizontal,
+                    viewportFraction: 1,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              ResponsiveHomeWidget(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ProductBottomnavigationBar(),
+                    ),
+                  );
+                },
+                title: "Product",
+              ),
+            ],
+          ),
+        ));
   }
 }
