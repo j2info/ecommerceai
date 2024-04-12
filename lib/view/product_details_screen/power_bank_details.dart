@@ -37,11 +37,18 @@ class _PowerBankDetailsScreenState extends State<PowerBankDetailsScreen> {
                 color: ColorConstant.Black,
               ),
             ),
-            title: Text(
-              "Product Details",
-              style: GoogleFonts.poppins(
-                  textStyle: TextStyle(fontWeight: FontWeight.bold)),
-            ),
+            title: MediaQuery.of(context).size.width < 600
+                ? Text(
+                    "Product Deatils",
+                    style: GoogleFonts.poppins(
+                        textStyle: TextStyle(fontWeight: FontWeight.w600)),
+                  )
+                : Text(
+                    "Product Deatils",
+                    style: GoogleFonts.poppins(
+                        textStyle: TextStyle(
+                            fontSize: 35, fontWeight: FontWeight.w600)),
+                  ),
           ),
           body: ResponsiveWidget(
             mobile: SingleChildScrollView(

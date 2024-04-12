@@ -562,7 +562,7 @@ class _BuyNowScreenState extends State<BuyNowScreen> {
                   height: 50,
                 ),
                 Container(
-                  height: 440,
+                  height: 444,
                   width: double.infinity,
                   decoration: BoxDecoration(
                       color: Color.fromARGB(255, 234, 229, 229),

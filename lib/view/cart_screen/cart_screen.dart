@@ -33,19 +33,32 @@ class _CartScreenState extends State<CartScreen> {
             color: ColorConstant.Black,
           ),
         ),
-        title: Text(
-          "Cart",
-          style: GoogleFonts.poppins(
-              textStyle: TextStyle(fontWeight: FontWeight.w600)),
-        ),
+        title: MediaQuery.of(context).size.width < 600
+            ? Text(
+                "Cart",
+                style: GoogleFonts.poppins(
+                    textStyle: TextStyle(fontWeight: FontWeight.w600)),
+              )
+            : Text(
+                "Cart",
+                style: GoogleFonts.poppins(
+                    textStyle:
+                        TextStyle(fontSize: 35, fontWeight: FontWeight.w600)),
+              ),
         actions: [
           IconButton(
               onPressed: () {},
-              icon: Icon(
-                Icons.chat_rounded,
-                color: ColorConstant.Black,
-                size: 30,
-              ))
+              icon: MediaQuery.of(context).size.width < 600
+                  ? Icon(
+                      Icons.chat_rounded,
+                      color: ColorConstant.Black,
+                      size: 30,
+                    )
+                  : Icon(
+                      Icons.chat_rounded,
+                      color: ColorConstant.Black,
+                      size: 50,
+                    ))
         ],
       ),
       body: Padding(

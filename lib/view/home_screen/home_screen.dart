@@ -62,16 +62,39 @@ class _HomeScreenState extends State<HomeScreen> {
             Icons.shopping_cart,
             size: 30,
           ),
-          title: Text(
-            "SHOPEE",
-            style: GoogleFonts.poppins(
-              textStyle: TextStyle(
-                  color: ColorConstant.DefRed,
-                  letterSpacing: 2,
-                  fontWeight: FontWeight.w800,
-                  fontSize: 28),
-            ),
-          ),
+          title: MediaQuery.of(context).size.width < 600
+              ? Text(
+                  "SHOPEE",
+                  style: GoogleFonts.poppins(
+                    textStyle: TextStyle(
+                      color: ColorConstant.DefRed,
+                      letterSpacing: 2,
+                      fontWeight: FontWeight.w800,
+                      fontSize: 28,
+                    ),
+                  ),
+                )
+              : Text(
+                  "SHOPEE",
+                  style: GoogleFonts.poppins(
+                    textStyle: TextStyle(
+                      color: ColorConstant.DefRed,
+                      letterSpacing: 2,
+                      fontWeight: FontWeight.w800,
+                      fontSize: 35,
+                    ),
+                  ),
+                ),
+          // Text(
+          //   "SHOPEE",
+          //   style: GoogleFonts.poppins(
+          //     textStyle: TextStyle(
+          //         color: ColorConstant.DefRed,
+          //         letterSpacing: 2,
+          //         fontWeight: FontWeight.w800,
+          //         fontSize: 28),
+          //   ),
+          // ),
           actions: [
             IconButton(
               onPressed: () {},

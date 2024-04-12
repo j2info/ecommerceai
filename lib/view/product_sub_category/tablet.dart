@@ -22,11 +22,18 @@ class TabletScreen extends StatelessWidget {
             color: ColorConstant.Black,
           ),
         ),
-        title: Text(
-          "Tablets",
-          style: GoogleFonts.poppins(
-              textStyle: TextStyle(fontWeight: FontWeight.bold)),
-        ),
+        title: MediaQuery.of(context).size.width < 600
+            ? Text(
+                "Tablets",
+                style: GoogleFonts.poppins(
+                    textStyle: TextStyle(fontWeight: FontWeight.w600)),
+              )
+            : Text(
+                "Tablets",
+                style: GoogleFonts.poppins(
+                    textStyle:
+                        TextStyle(fontSize: 35, fontWeight: FontWeight.w600)),
+              ),
       ),
       body: ResponsiveWidget(
         mobile: ListView.builder(

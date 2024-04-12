@@ -7,4 +7,5 @@ class ColorConstant {
   static Color BottomnavColor = Color(0xffF5F5F5);
   static Color grey = Color(0xff999999);
   static Color lightGrey = Color.fromARGB(255, 214, 212, 212);
+  static Color defGrey = Color(0xffF5F5F5);
 }

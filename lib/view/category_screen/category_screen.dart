@@ -4,6 +4,7 @@ import 'package:ecommerceai/utils/font_constant/font_constant.dart';
 import 'package:ecommerceai/view/category_screen/category_widget.dart';
 import 'package:ecommerceai/view/category_screen/responsive_category_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CategoryScreen extends StatefulWidget {
   CategoryScreen({super.key});
@@ -48,18 +49,32 @@ class _CategoryScreenState extends State<CategoryScreen> {
             ),
           ),
           centerTitle: true,
-          title: Text(
-            "Category",
-            style: FontConstant.appBarFont,
-          ),
+          title: MediaQuery.of(context).size.width < 600
+              ? Text(
+                  "Category",
+                  style: GoogleFonts.poppins(
+                      textStyle: TextStyle(fontWeight: FontWeight.w600)),
+                )
+              : Text(
+                  "Category",
+                  style: GoogleFonts.poppins(
+                      textStyle:
+                          TextStyle(fontSize: 35, fontWeight: FontWeight.w600)),
+                ),
           actions: [
             IconButton(
                 onPressed: () {},
-                icon: Icon(
-                  Icons.chat_sharp,
-                  size: 30,
-                  color: ColorConstant.Black,
-                ))
+                icon: MediaQuery.of(context).size.width < 600
+                    ? Icon(
+                        Icons.chat_rounded,
+                        color: ColorConstant.Black,
+                        size: 30,
+                      )
+                    : Icon(
+                        Icons.chat_rounded,
+                        color: ColorConstant.Black,
+                        size: 50,
+                      ))
           ],
         ),
         body: SingleChildScrollView(
